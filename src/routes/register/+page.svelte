@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
+	import { authStore } from '$lib/stores/auth';
 
 	let formData = {
 		username: '',
@@ -11,59 +11,33 @@
 
 	let loading: boolean = false;
 	let errors: { [key: string]: string } = {};
+	let apiError: string = '';
 
 	function validateForm(): boolean {
 		errors = {};
-
-		if (formData.username.length < 3) {
-			errors.username = 'Username must be at least 3 characters';
-		}
-
-		if (!formData.email.includes('@')) {
-			errors.email = 'Please enter a valid email address';
-		}
-
-		if (formData.password.length < 8) {
-			errors.password = 'Password must be at least 8 characters';
-		}
-
-		if (formData.password !== formData.confirmPassword) {
-			errors.confirmPassword = 'Passwords do not match';
-		}
-
-		if (formData.teamName.length < 3) {
-			errors.teamName = 'Team name must be at least 3 characters';
-		}
+		if (formData.username.length < 3) errors.username = 'Nome de usuário deve ter pelo menos 3 caracteres';
+		if (!formData.email.includes('@')) errors.email = 'Por favor, insira um e-mail válido';
+		if (formData.password.length < 8) errors.password = 'Senha deve ter pelo menos 8 caracteres';
+		if (formData.password !== formData.confirmPassword) errors.confirmPassword = 'As senhas não coincidem';
+		if (formData.teamName.length < 3) errors.teamName = 'Nome do time deve ter pelo menos 3 caracteres';
 
 		return Object.keys(errors).length === 0;
 	}
 
 	async function handleSubmit(e: Event) {
 		e.preventDefault();
+		apiError = '';
 
-		if (!validateForm()) {
-			return;
-		}
+		if (!validateForm()) return;
 
 		loading = true;
-
-		// TODO: Integrate with backend API
-		setTimeout(() => {
-			console.log('Registration attempt:', formData);
+		try {
+			await authStore.register(formData);
+		} catch (err: any) {
+			apiError = err.message || 'Erro ao criar conta. Tente novamente.';
+		} finally {
 			loading = false;
-			// Simulate successful registration
-			goto('/dashboard');
-		}, 1000);
-	}
-
-	function handleGoogleSignup() {
-		console.log('Google signup clicked');
-		// TODO: Implement Google OAuth
-	}
-
-	function handleFacebookSignup() {
-		console.log('Facebook signup clicked');
-		// TODO: Implement Facebook OAuth
+		}
 	}
 </script>
 
@@ -78,6 +52,13 @@
 				<h1>Junte-se ao NBA Fantasy</h1>
 				<p>Crie sua conta e comece a montar seu time dos sonhos</p>
 			</div>
+
+			{#if apiError}
+				<div class="error-message">
+					<span class="error-icon">⚠️</span>
+					<span>{apiError}</span>
+				</div>
+			{/if}
 
 			<form on:submit={handleSubmit} class="register-form">
 				<div class="form-row">
@@ -230,6 +211,23 @@
 		margin: 0;
 	}
 
+	.error-message {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-sm);
+		padding: var(--spacing-md);
+		background-color: rgba(214, 48, 49, 0.1);
+		border: 1px solid var(--danger);
+		border-radius: 8px;
+		color: var(--danger);
+		margin-bottom: var(--spacing-lg);
+		font-size: 0.875rem;
+	}
+
+	.error-icon {
+		font-size: 1.2rem;
+	}
+
 	.register-form {
 		display: flex;
 		flex-direction: column;
@@ -321,42 +319,6 @@
 		color: var(--text-secondary);
 	}
 
-	.social-signup {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: var(--spacing-md);
-	}
-
-	.btn-social {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: var(--spacing-sm);
-		padding: var(--spacing-md);
-		border: 1px solid var(--border);
-		background-color: var(--surface-light);
-		color: var(--text-primary);
-		font-weight: 600;
-		transition: all 0.3s;
-	}
-
-	.btn-social:hover {
-		background-color: var(--background);
-		border-color: var(--primary-color);
-	}
-
-	.social-icon {
-		width: 20px;
-		height: 20px;
-	}
-
-	.btn-google:hover {
-		border-color: #4285f4;
-	}
-
-	.btn-facebook:hover {
-		border-color: #1877f2;
-	}
 
 	.register-footer {
 		text-align: center;

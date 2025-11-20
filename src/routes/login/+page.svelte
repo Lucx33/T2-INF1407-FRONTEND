@@ -1,35 +1,25 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
+  import { authStore } from '$lib/stores/auth';
 
-	let email: string = '';
-	let password: string = '';
-	let rememberMe: boolean = false;
-	let loading: boolean = false;
-	let error: string = '';
+  let email: string = '';
+  let password: string = '';
+  let rememberMe: boolean = false;
+  let loading: boolean = false;
+  let error: string = '';
 
-	async function handleSubmit(e: Event) {
-		e.preventDefault();
-		error = '';
-		loading = true;
+  async function handleSubmit(e: Event) {
+    e.preventDefault();
+    error = '';
+    loading = true;
 
-		// TODO: Integrate with backend API
-		setTimeout(() => {
-			console.log('Login attempt:', { email, password, rememberMe });
-			loading = false;
-			// Simulate successful login
-			goto('/dashboard');
-		}, 1000);
-	}
-
-	function handleGoogleLogin() {
-		console.log('Google login clicked');
-		// TODO: Implement Google OAuth
-	}
-
-	function handleFacebookLogin() {
-		console.log('Facebook login clicked');
-		// TODO: Implement Facebook OAuth
-	}
+    try {
+      await authStore.login(email, password, rememberMe);
+    } catch (err: any) {
+      error = err.message || 'Erro ao fazer login. Verifique suas credenciais.';
+    } finally {
+      loading = false;
+    }
+  }
 </script>
 
 <svelte:head>
