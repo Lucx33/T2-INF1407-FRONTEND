@@ -4,53 +4,53 @@
 	const features = [
 		{
 			icon: '🏀',
-			title: 'Build Your Dream Team',
-			description: 'Choose the best NBA players and create winning strategies'
+			title: 'Monte seu time dos sonhos!',
+			description: 'Escale jogadores da NBA e crie a melhor formação possível'
 		},
 		{
 			icon: '🏆',
-			title: 'Compete with Friends',
-			description: 'Create private leagues and challenge your friends in real-time'
+			title: 'Desafie seus amigos',
+			description: 'Participe de ligas privadas e públicas para ver quem é o melhor'
 		},
 		{
 			icon: '📊',
-			title: 'Detailed Stats',
-			description: 'Track player and team performance with comprehensive analytics'
+			title: 'Estatísticas detalhadas',
+			description: 'Acompanhe o desempenho dos seus jogadores em tempo real'
 		},
 		{
 			icon: '💰',
-			title: 'Dynamic Market',
-			description: 'Buy and trade players strategically'
+			title: 'Mercado dinâmico',
+			description: 'Compre e venda jogadores aproveitando as melhores oportunidades'
 		}
 	];
 
 	const howToPlay = [
-		{ step: 1, text: 'Create your account and choose your team name' },
-		{ step: 2, text: 'Build your lineup within the salary cap' },
-		{ step: 3, text: 'Earn points based on real NBA player performances' },
-		{ step: 4, text: 'Climb the rankings and showcase your GM skills' }
+		{ step: 1, text: 'Crie sua conta e escolha o nome do seu time' },
+		{ step: 2, text: 'Monte seu "5 inicial" com o orçamento disponível' },
+		{ step: 3, text: 'Ganhe pontos com base no desempenho real dos jogadores da NBA' },
+		{ step: 4, text: 'Suba no ranking e mostre suas habilidades de GM' }
 	];
 </script>
 
 <svelte:head>
-	<title>NBA Fantasy Game - Build Your Dream Team</title>
+	<title>NBA Fantasy Game - Monte Seu Time dos Sonhos</title>
 </svelte:head>
 
 <div class="home">
 	<section class="hero">
 		<div class="container">
 			<div class="hero-content">
-				<h1 class="hero-title">Welcome to NBA Fantasy</h1>
+				<h1 class="hero-title">Bem-vindo ao NBA Fantasy</h1>
 				<p class="hero-subtitle">
-					Build your dream team, draft the best players, and compete with thousands of
-					basketball fans around the world
+					Monte seu time dos sonhos, recrute os melhores jogadores e compita com milhares de fãs de
+					basquete ao redor do mundo.
 				</p>
 				<div class="hero-actions">
 					<button class="btn btn-primary btn-lg" on:click={() => goto('/dashboard')}>
-						Get Started
+						Começar Agora
 					</button>
 					<button class="btn btn-outline btn-lg" on:click={() => goto('/market')}>
-						Browse Players
+						Ver Jogadores
 					</button>
 				</div>
 			</div>
@@ -62,7 +62,7 @@
 
 	<section class="features">
 		<div class="container">
-			<h2 class="section-title">Why Play?</h2>
+			<h2 class="section-title">Por que Jogar?</h2>
 			<div class="features-grid">
 				{#each features as feature}
 					<div class="feature-card">
@@ -77,7 +77,7 @@
 
 	<section class="how-to-play">
 		<div class="container">
-			<h2 class="section-title">How to Play</h2>
+			<h2 class="section-title">Como Jogar</h2>
 			<div class="steps">
 				{#each howToPlay as item}
 					<div class="step-card">
@@ -92,10 +92,10 @@
 	<section class="cta">
 		<div class="container">
 			<div class="cta-content">
-				<h2>Ready to Start?</h2>
-				<p>Build your team now and start competing!</p>
+				<h2>Pronto para Começar?</h2>
+				<p>Monte seu time agora e entre na disputa!</p>
 				<button class="btn btn-primary btn-lg" on:click={() => goto('/dashboard')}>
-					Create My Team
+					Criar Meu Time
 				</button>
 			</div>
 		</div>

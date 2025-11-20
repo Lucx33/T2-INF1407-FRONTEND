@@ -27,25 +27,25 @@
 
 				<ul class="nav-links" class:open={menuOpen}>
 					<li>
-						<a href="/" class:active={$page.url.pathname === '/'}>Home</a>
+						<a href="/" class:active={$page.url.pathname === '/'}>Página Inicial</a>
 					</li>
 					<li>
-						<a href="/dashboard" class:active={$page.url.pathname === '/dashboard'}>Dashboard</a>
+						<a href="/dashboard" class:active={$page.url.pathname === '/dashboard'}>Painel</a>
 					</li>
 					<li>
-						<a href="/my-team" class:active={$page.url.pathname === '/my-team'}>My Roster</a>
+						<a href="/my-team" class:active={$page.url.pathname === '/my-team'}>Meu Time</a>
 					</li>
 					<li>
-						<a href="/market" class:active={$page.url.pathname === '/market'}>Market</a>
+						<a href="/market" class:active={$page.url.pathname === '/market'}>Mercado</a>
 					</li>
 					<li>
-						<a href="/leaderboard" class:active={$page.url.pathname === '/leaderboard'}>Leaderboard</a>
+						<a href="/leaderboard" class:active={$page.url.pathname === '/leaderboard'}>Classificação</a>
 					</li>
 					<li class="user-menu">
-						<a href="/login" class="btn btn-outline btn-sm">Login</a>
+						<a href="/login" class="btn btn-outline btn-sm">Entrar</a>
 					</li>
 					<li class="user-menu">
-						<a href="/register" class="btn btn-primary btn-sm">Sign Up</a>
+						<a href="/register" class="btn btn-primary btn-sm">Registrar</a>
 					</li>
 				</ul>
 			</nav>
@@ -61,28 +61,26 @@
 			<div class="footer-content">
 				<div class="footer-section">
 					<h3>NBA Fantasy</h3>
-					<p>Build your dream team and compete with basketball fans worldwide.</p>
+					<p>Monte seu time dos sonhos e dispute com fãs de basquete do mundo todo.</p>
 				</div>
 				<div class="footer-section">
-					<h4>Quick Links</h4>
+					<h4>Links Rápidos</h4>
 					<ul>
-						<li><a href="/">Home</a></li>
-						<li><a href="/dashboard">Dashboard</a></li>
-						<li><a href="/market">Market</a></li>
-						<li><a href="/leaderboard">Leaderboard</a></li>
+						<li><a href="/">Página Inicial</a></li>
+						<li><a href="/dashboard">Painel</a></li>
+						<li><a href="/market">Mercado</a></li>
+						<li><a href="/leaderboard">Classificação</a></li>
 					</ul>
 				</div>
 				<div class="footer-section">
-					<h4>Legal</h4>
+					<h4>Sobre</h4>
 					<ul>
-						<li><a href="/terms">Terms of Service</a></li>
-						<li><a href="/privacy">Privacy Policy</a></li>
-						<li><a href="/about">About Us</a></li>
+						<li><a href="/about">Sobre Nós</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="footer-bottom">
-				<p>&copy; 2024 NBA Fantasy. All rights reserved.</p>
+				<p>&copy; 2025 NBA Fantasy. Todos os direitos reservados.</p>
 			</div>
 		</div>
 	</footer>

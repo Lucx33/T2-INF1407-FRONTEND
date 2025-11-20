@@ -39,27 +39,27 @@
 	<div class="container">
 		<div class="page-header">
 			<div>
-				<h1>Leaderboard</h1>
-				<p class="text-secondary">See the best managers and teams</p>
+				<h1>Classificação</h1>
+				<p class="text-secondary">Veja os melhores técnicos e times</p>
 			</div>
 		</div>
 
 		<div class="user-position card">
 			<div class="user-badge">👤</div>
 			<div class="user-info">
-				<h3>Your Position</h3>
+				<h3>Sua Posição</h3>
 				<div class="user-stats">
 					<div class="user-stat">
-						<span class="stat-label">Rank</span>
+						<span class="stat-label">Colocação</span>
 						<span class="stat-value">#{$currentUser.rank}</span>
 					</div>
 					<div class="user-stat">
-						<span class="stat-label">Points</span>
+						<span class="stat-label">Pontos</span>
 						<span class="stat-value">{$currentUser.points}</span>
 					</div>
 					<div class="user-stat">
-						<span class="stat-label">Team</span>
-						<span class="stat-value">My Team</span>
+						<span class="stat-label">Time</span>
+						<span class="stat-value">Meu Time</span>
 					</div>
 				</div>
 			</div>
@@ -67,7 +67,7 @@
 
 		<div class="filters-section card">
 			<div class="filter-group">
-				<label for="league">League</label>
+				<label for="league">Liga</label>
 				<select id="league" bind:value={selectedLeague}>
 					{#each leagues as league}
 						<option value={league.id}>{league.name}</option>
@@ -76,7 +76,7 @@
 			</div>
 
 			<div class="filter-group">
-				<label for="timeframe">Period</label>
+				<label for="timeframe">Período</label>
 				<select id="timeframe" bind:value={timeframe}>
 					{#each timeframes as tf}
 						<option value={tf.value}>{tf.label}</option>
@@ -87,10 +87,10 @@
 
 		<div class="leaderboard-table card">
 			<div class="table-header">
-				<div class="header-cell rank-col">Rank</div>
-				<div class="header-cell name-col">Manager</div>
-				<div class="header-cell team-col">Team</div>
-				<div class="header-cell points-col">Points</div>
+				<div class="header-cell rank-col">Colocação</div>
+				<div class="header-cell name-col">Técnico</div>
+				<div class="header-cell team-col">Time</div>
+				<div class="header-cell points-col">Pontos</div>
 			</div>
 
 			<div class="table-body">
@@ -161,6 +161,7 @@
 		</div>
 	</div>
 </div>
+
 
 <style>
 	.leaderboard-page {
