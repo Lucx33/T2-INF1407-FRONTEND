@@ -1,0 +1,26 @@
+# Exemplo de arquivo de override para docker-compose
+# Copie este arquivo para docker-compose.override.yml e customize conforme necessário
+
+version: '3.8'
+
+services:
+  dev:
+    # Alterar porta de desenvolvimento
+    # ports:
+    #   - "8080:5173"
+
+    # Adicionar variáveis de ambiente customizadas
+    # environment:
+    #   - PUBLIC_API_URL=http://localhost:3000/api
+
+    # Limitar recursos
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.5'
+    #       memory: 512M
+
+  prod:
+    # Alterar porta de produção
+    # ports:
+    #   - "8000:3000"

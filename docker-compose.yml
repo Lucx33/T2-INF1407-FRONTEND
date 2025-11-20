@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # Serviço de Desenvolvimento
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: fantasy-game-dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true
+    networks:
+      - fantasy-network
+
+  # Serviço de Produção
+  prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fantasy-game-prod
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - fantasy-network
+
+networks:
+  fantasy-network:
+    driver: bridge

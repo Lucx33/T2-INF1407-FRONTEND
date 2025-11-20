@@ -1,0 +1,49 @@
+# Dependencies
+node_modules
+.pnpm
+.yarn
+
+# Build outputs
+.svelte-kit
+build
+dist
+.vercel
+.netlify
+.cloudflare
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage
+.nyc_output
+
+# Docker
+docker-compose.override.yml
+
+# Misc
+*.tsbuildinfo

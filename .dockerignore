@@ -1,0 +1,55 @@
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+package-lock.json
+.pnpm-debug.log
+
+# Build
+build
+dist
+.svelte-kit
+.vercel
+.netlify
+.cloudflare
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker
+Dockerfile
+Dockerfile.dev
+docker-compose.yml
+.dockerignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# Testing
+coverage
+.nyc_output
+
+# Misc
+README.md
+.editorconfig
+.prettierrc
+.eslintrc

@@ -1,0 +1,22 @@
+# Dockerfile para desenvolvimento
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Instalar dependências globais
+RUN npm install -g npm@latest
+
+# Copiar package.json
+COPY package*.json ./
+
+# Instalar dependências
+RUN npm install
+
+# Copiar código fonte
+COPY . .
+
+# Expor porta de desenvolvimento
+EXPOSE 5173
+
+# Comando para iniciar em modo desenvolvimento
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
