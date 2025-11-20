@@ -1,11 +1,17 @@
 <script lang="ts">
 	import '../app.css';
 	import { page } from '$app/stores';
+	import { authStore } from '$lib/stores/auth';
 
 	let menuOpen: boolean = false;
 
 	function toggleMenu(): void {
 		menuOpen = !menuOpen;
+	}
+
+	function handleLogout(): void {
+		authStore.logout();
+		menuOpen = false;
 	}
 </script>
 
@@ -25,28 +31,36 @@
 					<span></span>
 				</button>
 
-				<ul class="nav-links" class:open={menuOpen}>
-					<li>
-						<a href="/" class:active={$page.url.pathname === '/'}>Página Inicial</a>
-					</li>
-					<li>
-						<a href="/dashboard" class:active={$page.url.pathname === '/dashboard'}>Painel</a>
-					</li>
-					<li>
-						<a href="/my-team" class:active={$page.url.pathname === '/my-team'}>Meu Time</a>
-					</li>
-					<li>
-						<a href="/market" class:active={$page.url.pathname === '/market'}>Mercado</a>
-					</li>
-					<li>
-						<a href="/leaderboard" class:active={$page.url.pathname === '/leaderboard'}>Classificação</a>
-					</li>
-					<li class="user-menu">
-						<a href="/login" class="btn btn-outline btn-sm">Entrar</a>
-					</li>
-					<li class="user-menu">
-						<a href="/register" class="btn btn-primary btn-sm">Registrar</a>
-					</li>
+				<ul class="nav-links" class:open={menuOpen} class:auth-loading={$authStore.isLoading}>
+					{#if !$authStore.isAuthenticated}
+						<!-- Navegação para usuários não autenticados -->
+						<li>
+							<a href="/" class:active={$page.url.pathname === '/'}>Página Inicial</a>
+						</li>
+						<li class="user-menu">
+							<a href="/login" class="btn btn-outline btn-sm">Entrar</a>
+						</li>
+						<li class="user-menu">
+							<a href="/register" class="btn btn-primary btn-sm">Registrar</a>
+						</li>
+					{:else}
+						<!-- Navegação para usuários autenticados -->
+						<li>
+							<a href="/dashboard" class:active={$page.url.pathname === '/dashboard'}>Painel</a>
+						</li>
+						<li>
+							<a href="/my-team" class:active={$page.url.pathname === '/my-team'}>Meu Time</a>
+						</li>
+						<li>
+							<a href="/market" class:active={$page.url.pathname === '/market'}>Mercado</a>
+						</li>
+						<li>
+							<a href="/leaderboard" class:active={$page.url.pathname === '/leaderboard'}>Classificação</a>
+						</li>
+						<li class="user-menu">
+							<button on:click={handleLogout} class="btn btn-outline btn-sm">Sair</button>
+						</li>
+					{/if}
 				</ul>
 			</nav>
 		</div>
@@ -141,6 +155,14 @@
 		gap: var(--spacing-md);
 		align-items: center;
 		margin: 0;
+		opacity: 1;
+		transition: opacity 0.15s ease-in;
+	}
+
+	/* Esconde o menu durante o carregamento da autenticação para evitar flash */
+	.nav-links.auth-loading {
+		opacity: 0;
+		pointer-events: none;
 	}
 
 	.nav-links a {
