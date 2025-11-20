@@ -47,3 +47,7 @@ docker-compose.override.yml
 
 # Misc
 *.tsbuildinfo
+.claude/settings.local.json
+vite.config.js.timestamp-1763668143042-83a23ad554bc1.mjs
+.claude
+.env.example
