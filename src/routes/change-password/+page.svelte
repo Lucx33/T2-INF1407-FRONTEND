@@ -213,16 +213,19 @@
 							<span class="icon">{formData.newPassword.length >= 8 ? '✓' : '○'}</span>
 							At least 8 characters long
 						</li>
-						<li class:met={/[A-Z]/.test(formData.newPassword)}>
-							<span class="icon">{/[A-Z]/.test(formData.newPassword) ? '✓' : '○'}</span>
+
+						<li class:met={( /[A-Z]/.test(formData.newPassword) )}>
+							<span class="icon">{( /[A-Z]/.test(formData.newPassword) ) ? '✓' : '○'}</span>
 							Contains uppercase letter
 						</li>
-						<li class:met={/[0-9]/.test(formData.newPassword)}>
-							<span class="icon">{/[0-9]/.test(formData.newPassword) ? '✓' : '○'}</span>
+
+						<li class:met={( /[0-9]/.test(formData.newPassword) )}>
+							<span class="icon">{( /[0-9]/.test(formData.newPassword) ) ? '✓' : '○'}</span>
 							Contains number
 						</li>
-						<li class:met={/[^A-Za-z0-9]/.test(formData.newPassword)}>
-							<span class="icon">{/[^A-Za-z0-9]/.test(formData.newPassword) ? '✓' : '○'}</span>
+
+						<li class:met={( /[^A-Za-z0-9]/.test(formData.newPassword) )}>
+							<span class="icon">{( /[^A-Za-z0-9]/.test(formData.newPassword) ) ? '✓' : '○'}</span>
 							Contains special character
 						</li>
 					</ul>

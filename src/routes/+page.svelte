@@ -89,17 +89,6 @@
 		</div>
 	</section>
 
-	<section class="cta">
-		<div class="container">
-			<div class="cta-content">
-				<h2>Pronto para Começar?</h2>
-				<p>Monte seu time agora e entre na disputa!</p>
-				<button class="btn btn-primary btn-lg" on:click={() => goto('/dashboard')}>
-					Criar Meu Time
-				</button>
-			</div>
-		</div>
-	</section>
 </div>
 
 <style>
