@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { availablePlayers } from '$lib/stores/players';
+	import { onMount } from 'svelte';
+	import { fetchPlayers } from '$lib/api/players';
+	import type { Player as ApiPlayer } from '$lib/api/players';
 	import { userTeam } from '$lib/stores/team';
 	import type { Player } from '$lib/stores/players';
 	import PlayerCard from '$lib/components/PlayerCard.svelte';
@@ -8,8 +10,43 @@
 	let selectedPosition = 'all';
 	let sortBy = 'points';
 	let maxPrice = 50;
+	let availablePlayers: Player[] = [];
+	let loading = true;
+	let error = '';
 
-	$: filteredPlayers = $availablePlayers
+	// Converter dados da API para o formato usado no componente
+	function convertApiPlayer(apiPlayer: ApiPlayer): Player {
+		return {
+			id: apiPlayer.id,
+			name: apiPlayer.name,
+			position: apiPlayer.position,
+			positionShort: apiPlayer.positionShort,
+			team: apiPlayer.team,
+			price: parseFloat(apiPlayer.price),
+			points: apiPlayer.points,
+			photo: apiPlayer.photo,
+			stats: {
+				points: parseFloat(apiPlayer.stats.points),
+				rebounds: parseFloat(apiPlayer.stats.rebounds),
+				assists: parseFloat(apiPlayer.stats.assists),
+				steals: parseFloat(apiPlayer.stats.steals),
+				blocks: parseFloat(apiPlayer.stats.blocks)
+			}
+		};
+	}
+
+	onMount(async () => {
+		try {
+			const apiPlayers = await fetchPlayers();
+			availablePlayers = apiPlayers.map(convertApiPlayer);
+			loading = false;
+		} catch (e) {
+			error = e instanceof Error ? e.message : 'Erro ao carregar jogadores';
+			loading = false;
+		}
+	});
+
+	$: filteredPlayers = availablePlayers
 		.filter(player => {
 			const matchesSearch = player.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
 				player.team.toLowerCase().includes(searchTerm.toLowerCase());
@@ -148,7 +185,19 @@
 			</div>
 		</div>
 
-		{#if filteredPlayers.length > 0}
+		{#if loading}
+			<div class="empty-state card">
+				<div class="loading-spinner">⏳</div>
+				<h3>Loading players...</h3>
+				<p>Please wait</p>
+			</div>
+		{:else if error}
+			<div class="empty-state card error-state">
+				<div class="empty-icon">⚠️</div>
+				<h3>Error loading players</h3>
+				<p>{error}</p>
+			</div>
+		{:else if filteredPlayers.length > 0}
 			<div class="players-grid">
 				{#each filteredPlayers as player (player.id)}
 					<PlayerCard {player} onSelect={addPlayerToTeam} />
@@ -307,6 +356,30 @@
 	.empty-state p {
 		color: var(--text-secondary);
 		margin: 0;
+	}
+
+	.loading-spinner {
+		font-size: 4rem;
+		animation: pulse 1.5s ease-in-out infinite;
+	}
+
+	@keyframes pulse {
+		0%, 100% {
+			opacity: 1;
+			transform: scale(1);
+		}
+		50% {
+			opacity: 0.5;
+			transform: scale(1.1);
+		}
+	}
+
+	.error-state {
+		border-color: #ef4444;
+	}
+
+	.error-state .empty-icon {
+		color: #ef4444;
 	}
 
 	@media (max-width: 768px) {

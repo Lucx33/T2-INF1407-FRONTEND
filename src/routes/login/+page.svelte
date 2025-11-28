@@ -83,10 +83,6 @@
 				</button>
 			</form>
 
-			<div class="divider">
-				<span>ou continue com</span>
-			</div>
-
 			<div class="login-footer">
 				<p>
 					Ainda não tem uma conta?
