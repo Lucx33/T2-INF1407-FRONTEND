@@ -215,7 +215,9 @@
 						</li>
 
 						<li class:met={( /[A-Z]/.test(formData.newPassword) )}>
-							<span class="icon">{( /[A-Z]/.test(formData.newPassword) ) ? '✓' : '○'}</span>
+							<span class="icon">
+								{ (/[A-Z]/.test(formData.newPassword)) ? '✓' : '○' }
+							</span>
 							Contains uppercase letter
 						</li>
 
