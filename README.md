@@ -1,223 +1,300 @@
-# NBA Fantasy Game - Frontend
+# INF1407 — ProgWeb
 
-Frontend developed in Svelte/SvelteKit for an NBA Fantasy Basketball application.
+Trabalho Final — NBA Fantasy Game
 
-## Technologies Used
+Bruno Wolf - 2212576
 
-- **SvelteKit** - Modern and performant web framework
-- **Svelte 5** - Reactive library for building user interfaces
-- **TypeScript** - Typed programming language for better development experience
-- **Vite** - Build tool and dev server
+Luca Oliveira Lima - 2210831
 
-## Features
+## Escopo do Projeto
+Este projeto foi desenvolvido para a disciplina **INF1407 — Programação Web**, com o objetivo de criar uma aplicação web moderna em **SvelteKit** para gerenciamento de times de basquete fantasy da NBA.
 
-### Pages
-- **Home Page**: Landing page with game presentation
-- **Dashboard**: User overview with statistics and recent activity
-- **My Roster**: Lineup management with visual basketball court formation
-- **Player Market**: Search and sign players with advanced filters
-- **Leaderboard**: Manager rankings and podium of top performers
+O sistema permite que usuários montem seus times, contratem jogadores, acompanhem estatísticas e compitam em rankings.
 
-### Authentication
-- **Login**: User authentication with email/password and social login options
-- **Register**: New user registration with team name creation
-- **Forgot Password**: Password reset request flow
-- **Change Password**: Secure password update for authenticated users
+O foco foi explorar os principais recursos do SvelteKit, incluindo:
+- Estruturação de **componentes reutilizáveis**
+- Criação de **rotas** e **páginas**
+- Gerenciamento de estado com **stores TypeScript**
+- Interface responsiva e moderna
+- Sistema de autenticação completo
 
-## Project Structure
+---
 
-```
-src/
-├── lib/
-│   ├── components/       # Reusable components
-│   │   ├── Formation.svelte
-│   │   ├── PlayerCard.svelte
-│   │   └── StatsCard.svelte
-│   └── stores/          # State management (TypeScript)
-│       ├── players.ts
-│       ├── team.ts
-│       └── user.ts
-├── routes/              # Application pages
-│   ├── dashboard/
-│   ├── leaderboard/
-│   ├── market/
-│   ├── my-team/
-│   ├── login/          # Login page
-│   ├── register/       # Registration page
-│   ├── forgot-password/  # Password reset request
-│   ├── change-password/  # Password change
-│   └── +page.svelte (Home)
-├── app.css             # Global styles
-├── app.html            # Base HTML template
-└── +layout.svelte      # Main layout
+## Funcionalidades Implementadas
+- **Autenticação completa** com login, registro, recuperação de senha e troca de senha
+- **Dashboard** com visão geral de estatísticas e atividades recentes
+- **Gerenciamento de elenco** com formação tática em quadra de basquete
+- **Mercado de jogadores** com busca e filtros avançados para contratação
+- **Sistema de ranking** com pódio dos melhores gerentes
+- **Três formações táticas** disponíveis (Standard, Small Ball, Twin Towers)
+- **Controle de teto salarial** para montagem do time
+- **Interface responsiva** com tema escuro moderno
+- **Componentes reutilizáveis** (PlayerCard, StatsCard, Formation)
 
-static/                 # Static files
-tsconfig.json          # TypeScript configuration
-```
+---
 
-## Main Components
+## Manual do Usuário
 
-### Formation
-Visual component that displays the basketball court with 5 player positions (PG, SG, SF, PF, C).
+1. **Página de Login**
+   - Permite que o usuário faça login com email e senha.
+   - Opções de login social disponíveis.
+   - Link para recuperação de senha caso o usuário esqueça.
 
-### PlayerCard
-Player card showing photo, statistics, position, team, and salary.
+2. **Página de Registro**
+   - Permite que novos usuários se cadastrem.
+   - Durante o cadastro, o usuário cria o nome do seu time.
 
-### StatsCard
-Reusable statistics card for displaying user metrics.
+3. **Recuperação de Senha**
+   - Usuário solicita redefinição de senha informando o email cadastrado.
 
-## Stores (Global State)
+4. **Home**
+   - Página inicial com apresentação do jogo.
+   - Explicação das principais funcionalidades.
 
-All stores are written in TypeScript with proper type definitions:
+5. **Dashboard**
+   - Visão geral do desempenho do usuário.
+   - Estatísticas do time.
+   - Atividades recentes.
 
-- **players.ts**: List of available players in the market with full TypeScript interfaces
-- **team.ts**: User's team, formation, and salary cap management
-- **user.ts**: User data, points, ranking, and authentication state
+6. **My Roster (Meu Elenco)**
+   - Visualização da formação do time em quadra de basquete.
+   - Cinco posições: PG (Point Guard), SG (Shooting Guard), SF (Small Forward), PF (Power Forward), C (Center).
+   - Possibilidade de alterar a formação tática.
+   - Controle visual do teto salarial disponível.
 
-## How to Run
+7. **Player Market (Mercado)**
+   - Listagem de todos os jogadores disponíveis.
+   - Filtros por posição, time NBA e faixa salarial.
+   - Sistema de busca por nome.
+   - Contratação de jogadores respeitando o teto salarial.
 
-### Option 1: With Docker (Recommended)
+8. **Leaderboard (Ranking)**
+   - Classificação dos gerentes por pontuação.
+   - Pódio visual destacando os três primeiros colocados.
+   - Estatísticas dos melhores times.
 
-**Advantage**: No need to install Node.js or local dependencies!
+9. **Troca de Senha**
+   - Usuário autenticado pode alterar sua senha de forma segura.
 
-#### Prerequisites
-- Docker installed
-- Docker Compose installed
+---
 
-#### Run in Development
+## Como rodar com Docker
+
+### Desenvolvimento
 
 ```bash
-# Build and start the container
+# Iniciar container de desenvolvimento
 docker-compose up dev
 
-# Or in background
+# Ou em segundo plano
 docker-compose up -d dev
 ```
 
-The application will be available at `http://localhost:5173`
+A aplicação estará disponível em:
+**http://localhost:5173**
 
-**Hot reload is active**: Code changes will be automatically reflected!
+O hot reload está ativo, mudanças no código serão refletidas automaticamente.
 
-#### Run in Production
+### Produção
 
 ```bash
-# Build and start the production container
+# Iniciar container de produção
 docker-compose up prod
 
-# Or in background
+# Ou em segundo plano
 docker-compose up -d prod
 ```
 
-The application will be available at `http://localhost:3000`
+A aplicação estará disponível em:
+**http://localhost:3000**
 
-#### Useful Docker Commands
+### Comandos Úteis
 
 ```bash
-# Stop the containers
+# Parar os containers
 docker-compose down
 
-# Rebuild containers (after Dockerfile changes)
+# Reconstruir containers (após mudanças no Dockerfile)
 docker-compose up --build dev
 
-# View logs
+# Ver logs
 docker-compose logs -f dev
 
-# Access container shell
+# Acessar shell do container
 docker-compose exec dev sh
 ```
 
 ---
 
-### Option 2: Local Installation (without Docker)
+## Como rodar sem Docker
 
-#### Prerequisites
-- Node.js 18+ installed
-- npm or pnpm
+### Pré-requisitos
+- Node.js 18 ou superior
+- npm ou pnpm
 
-#### Installation
+### Instalação
 
 ```bash
-# Install dependencies
+# Instalar dependências
 npm install
 
-# Start development server
+# Iniciar servidor de desenvolvimento
 npm run dev
 
-# Build for production
+# Build para produção
 npm run build
 
-# Preview production build
+# Visualizar build de produção
 npm run preview
 ```
 
-The application will be available at `http://localhost:5173`
+A aplicação estará disponível em **http://localhost:5173**
 
-## Color Configuration (CSS Variables)
+---
 
-The project uses a dark theme with the following main colors:
-- **Primary**: Orange (#ff6b35)
-- **Secondary**: Orange-Yellow (#f7931e)
-- **Background**: Black (#0f1419)
-- **Surface**: Dark gray (#1a1f29)
+## Estrutura do Projeto
 
-All colors can be customized in the `src/app.css` file.
+```
+src/
+├── lib/
+│   ├── components/       # Componentes reutilizáveis
+│   │   ├── Formation.svelte
+│   │   ├── PlayerCard.svelte
+│   │   └── StatsCard.svelte
+│   └── stores/          # Gerenciamento de estado (TypeScript)
+│       ├── players.ts
+│       ├── team.ts
+│       └── user.ts
+├── routes/              # Páginas da aplicação
+│   ├── dashboard/
+│   ├── leaderboard/
+│   ├── market/
+│   ├── my-team/
+│   ├── login/
+│   ├── register/
+│   ├── forgot-password/
+│   ├── change-password/
+│   └── +page.svelte (Home)
+├── app.css             # Estilos globais
+├── app.html            # Template HTML base
+└── +layout.svelte      # Layout principal
+```
 
-## Available Formations
+---
 
-- **Standard** (2-2-1): 2 Guards, 2 Forwards, 1 Center
-- **Small Ball** (3-2-0): 3 Guards, 2 Forwards, no Center
-- **Twin Towers** (2-1-2): 2 Guards, 1 Forward, 2 Centers
+## Tecnologias Utilizadas
 
-## NBA Player Positions
+- **SvelteKit** - Framework web moderno e performático
+- **Svelte 5** - Biblioteca reativa para construção de interfaces
+- **TypeScript** - Linguagem tipada para melhor experiência de desenvolvimento
+- **Vite** - Ferramenta de build e servidor de desenvolvimento
+- **Docker** - Containerização para facilitar deployment
 
-- **PG (Point Guard)**: Primary ball handler and playmaker
-- **SG (Shooting Guard)**: Perimeter scorer
-- **SF (Small Forward)**: Versatile wing player
-- **PF (Power Forward)**: Inside/outside threat
-- **C (Center)**: Rim protector and rebounder
+---
 
-## Backend Integration
+## Posições NBA
 
-This is the frontend of the application. The backend should be developed in a separate repository.
+- **PG (Point Guard)**: Armador principal, responsável pela organização do jogo
+- **SG (Shooting Guard)**: Ala-armador, focado em pontuação de perímetro
+- **SF (Small Forward)**: Ala versátil
+- **PF (Power Forward)**: Ala-pivô, joga dentro e fora do garrafão
+- **C (Center)**: Pivô, protetor do aro e reboteiro
 
-### Documentation for Backend Development
+---
 
-Three comprehensive documentation files are provided for backend developers:
+## Formações Disponíveis
 
-1. **[API_SPECIFICATION.md](API_SPECIFICATION.md)** - Complete API specification
-   - All required endpoints with request/response formats
-   - TypeScript interfaces for data models
-   - Authentication flow (JWT)
-   - Business rules and validations
+- **Standard (2-2-1)**: 2 Armadores, 2 Alas, 1 Pivô
+- **Small Ball (3-2-0)**: 3 Armadores, 2 Alas, sem Pivô
+- **Twin Towers (2-1-2)**: 2 Armadores, 1 Ala, 2 Pivôs
 
-2. **[BACKEND_INTEGRATION_GUIDE.md](BACKEND_INTEGRATION_GUIDE.md)** - Step-by-step integration guide
-   - Django models structure
-   - Settings configuration (CORS, JWT, DRF)
-   - Frontend service layer examples
-   - Deployment instructions
+---
 
-3. **[BACKEND_README_TEMPLATE.md](BACKEND_README_TEMPLATE.md)** - Template README for backend repo
-   - Installation instructions
-   - Docker configuration
-   - Testing guidelines
+## Configuração de Cores
 
-### Next Steps for Backend Connection
+O projeto utiliza tema escuro com as seguintes cores principais:
+- **Primária**: Laranja (#ff6b35)
+- **Secundária**: Laranja-Amarelado (#f7931e)
+- **Fundo**: Preto (#0f1419)
+- **Superfície**: Cinza escuro (#1a1f29)
 
-To connect this frontend with the backend:
-1. Copy the three documentation files to your backend repository
-2. Implement the API endpoints as specified in API_SPECIFICATION.md
-3. Replace mock data in stores with actual API calls
-4. Add environment variable for API URL (VITE_API_URL)
-5. Test authentication flow end-to-end
+Todas as cores podem ser personalizadas no arquivo `src/app.css`.
 
-### Future Enhancements
+---
 
-- Private league system
-- Real-time score updates via WebSockets
-- Trade and waiver wire functionality
-- Push notifications for player updates
-- Integration with live NBA stats API
+## Integração com Backend
 
-## License
+Este é o frontend da aplicação. O backend deve ser desenvolvido em repositório separado.
 
-This project was developed for educational purposes.
+### Documentação para Desenvolvimento do Backend
+
+Três arquivos de documentação completos foram fornecidos:
+
+1. **API_SPECIFICATION.md** - Especificação completa da API
+   - Todos os endpoints necessários com formatos de request/response
+   - Interfaces TypeScript para modelos de dados
+   - Fluxo de autenticação (JWT)
+   - Regras de negócio e validações
+
+2. **BACKEND_INTEGRATION_GUIDE.md** - Guia de integração passo a passo
+   - Estrutura de models Django
+   - Configuração de settings (CORS, JWT, DRF)
+   - Exemplos de camada de serviço no frontend
+   - Instruções de deployment
+
+3. **BACKEND_README_TEMPLATE.md** - Template de README para repositório backend
+   - Instruções de instalação
+   - Configuração Docker
+   - Guidelines de testes
+
+### Próximos Passos para Conexão com Backend
+
+1. Copiar os três arquivos de documentação para o repositório backend
+2. Implementar os endpoints da API conforme especificado em API_SPECIFICATION.md
+3. Substituir dados mockados nos stores por chamadas reais de API
+4. Adicionar variável de ambiente para URL da API (VITE_API_URL)
+5. Testar fluxo de autenticação end-to-end
+
+---
+
+## O que funcionou
+
+- Todas as principais funcionalidades descritas no escopo foram **implementadas e testadas**.
+- Sistema de autenticação completo com todas as páginas funcionando corretamente.
+- Gerenciamento de elenco com formação visual em quadra de basquete.
+- Mercado de jogadores com filtros e busca funcionando perfeitamente.
+- Sistema de ranking exibindo corretamente as classificações.
+- Interface responsiva e moderna funcionando em diferentes resoluções.
+- Stores TypeScript com tipagem completa garantindo segurança de tipos.
+- Containerização Docker funcionando tanto em desenvolvimento quanto produção.
+
+---
+
+## O que não funcionou
+
+- A aplicação está utilizando **dados mockados** nos stores, pois o backend ainda não foi implementado.
+- **Integração com API real** ainda não foi realizada, aguardando desenvolvimento do backend.
+- Não há **validação real de autenticação**, apenas simulação local.
+- Sistema de **pontuação em tempo real** não está ativo (requer integração com API de estatísticas NBA).
+- Fora dessas limitações relacionadas ao backend, todas as demais funcionalidades do frontend estão operacionais.
+
+---
+
+## Melhorias Futuras
+
+- Sistema de ligas privadas
+- Atualizações de pontuação em tempo real via WebSockets
+- Funcionalidade de trocas e waiver wire
+- Notificações push para atualizações de jogadores
+- Integração com API de estatísticas NBA ao vivo
+
+---
+
+## Observações Finais
+
+O projeto foi concluído conforme os requisitos da disciplina.
+Todas as funcionalidades principais do frontend foram implementadas com sucesso, e a aplicação encontra-se estável e utilizável.
+A arquitetura foi pensada para facilitar a futura integração com o backend, com stores bem definidos e documentação completa da API necessária.
+O uso de TypeScript garante segurança de tipos e facilita a manutenção do código.
+
+O projeto está pronto para receber a integração com backend Django seguindo a documentação fornecida.
