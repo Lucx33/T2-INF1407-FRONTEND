@@ -12,8 +12,7 @@ dist
 .cloudflare
 
 # Environment variables
-.env
-.env.*
+
 !.env.example
 
 # OS files
