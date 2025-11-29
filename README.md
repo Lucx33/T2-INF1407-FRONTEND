@@ -1,5 +1,7 @@
 # INF1407 — ProgWeb
 
+https://t2-inf-1407-frontend.vercel.app/
+
 Trabalho Final — NBA Fantasy Game
 
 Bruno Wolf - 2212576
@@ -17,6 +19,12 @@ O foco foi explorar os principais recursos do SvelteKit, incluindo:
 - Gerenciamento de estado com **stores TypeScript**
 - Interface responsiva e moderna
 - Sistema de autenticação completo
+
+## Integração com Backend
+
+O backend da aplicação foi desenvolvido separadamente utilizando o framework Django (com Django REST Framework) e já está integrado ao frontend por meio de chamadas HTTP autenticadas via JWT (JSON Web Tokens).
+
+A arquitetura adotada segue o padrão frontend SvelteKit + backend Django, garantindo separação de responsabilidades e fácil manutenção futura.
 
 ---
 
